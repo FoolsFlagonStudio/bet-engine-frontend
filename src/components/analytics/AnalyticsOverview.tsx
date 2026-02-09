@@ -1,8 +1,11 @@
-import { Typography, Spin, Alert, Space } from "antd";
+import { Typography, Spin, Alert, Space, Card } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "../../lib/api";
 import { API_ROUTES } from "../../lib/routes";
 import OverviewStats from "../analytics/OverviewStats";
+import ConfidenceWinRateChart from "../analytics/ConfidenceWinRateChart";
+import MarketPerformanceTable from "./MarketPerformanceTable";
+import ModelTrustChart from "./ModelTrustChart";
 const { Title } = Typography;
 
 type HistoricalAnalytics = {
@@ -44,6 +47,17 @@ type HistoricalAnalytics = {
   }[];
 };
 
+type ModelTrustRow = {
+  date: string;
+  trust_all: number;
+  trust_core: number;
+  weights: {
+    props: number;
+    moneylines: number;
+    parlays: number;
+  };
+};
+
 export default function AnalyticsOVerview() {
   const {
     data: historical,
@@ -58,7 +72,7 @@ export default function AnalyticsOVerview() {
     data: modelTrust,
     isLoading: trustLoading,
     error: trustError,
-  } = useQuery({
+  } = useQuery<ModelTrustRow[]>({
     queryKey: ["model-trust"],
     queryFn: () => apiFetch(API_ROUTES.modelTrust),
   });
@@ -87,17 +101,58 @@ export default function AnalyticsOVerview() {
           confidenceWeighted={historical?.confidence_weighted}
         />
 
-        {/* <Card title="Confidence vs Win Rate">
-          <ConfidenceWinRateChart />
+        <Card
+          title={
+            <>
+              Confidence vs Win Rate
+              <Typography.Text
+                type="secondary"
+                style={{ display: "block", fontSize: 12 }}
+              >
+                Based on generated straight player prop bets only. Parlays and
+                moneylines are excluded.
+              </Typography.Text>
+            </>
+          }
+        >
+          <ConfidenceWinRateChart confidence={historical?.confidence ?? []} />
         </Card>
 
         <Card title="Market Performance">
-          <MarketPerformanceTable />
+          <MarketPerformanceTable markets={historical?.markets ?? []} />
+          <Typography.Text
+            type="secondary"
+            style={{ display: "block", fontSize: 12, marginTop: 8 }}
+          >
+            Market performance reflects historical straight player prop bets
+            only. Parlays and moneylines are excluded.
+          </Typography.Text>
         </Card>
 
-        <Card title="Model Trust Over Time">
-          <ModelTrustChart />
-        </Card> */}
+        <Card
+          title={
+            <>
+              Model Trust Over Time
+              <Typography.Text
+                type="secondary"
+                style={{ display: "block", fontSize: 12 }}
+              >
+                Tracks model confidence and weighting adjustments across recent
+                days.
+              </Typography.Text>
+            </>
+          }
+        >
+          <ModelTrustChart data={modelTrust ?? []} />
+          <Typography.Text
+            type="secondary"
+            style={{ display: "block", fontSize: 12, marginTop: 8 }}
+          >
+            Model trust trends stabilize as more days are recorded. The system
+            is early in its tracking lifecycle, so the current time range is
+            intentionally short.
+          </Typography.Text>
+        </Card>
       </Space>
     </>
   );
