@@ -1,7 +1,7 @@
 import { Layout, Menu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -40,7 +40,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </Sider>
 
       <Layout style={{ flex: 1 }}>
-        <Header style={{ background: "#fff" }} />
         <Content className="app-content">{children}</Content>
       </Layout>
     </Layout>

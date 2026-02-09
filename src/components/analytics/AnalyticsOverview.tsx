@@ -95,7 +95,7 @@ export default function AnalyticsOVerview() {
     <>
       <Title level={3}>Overview</Title>
 
-      <Space direction="vertical" size="large" style={{ width: "100%" }}>
+      <Space orientation="vertical" size="large" style={{ width: "100%" }}>
         <OverviewStats
           overall={historical?.overall}
           confidenceWeighted={historical?.confidence_weighted}
