@@ -1,11 +1,18 @@
 import { Typography } from "antd";
+import HomeHeader from "../components/home/HomeHeader";
+import HomeHero from "../components/home/HomeHero";
+import FreePicksSection from "../components/home/FreePicksSection";
 
 const { Title } = Typography;
 
 export default function Home() {
   return (
-    <div style={{ padding: 24 }}>
-      <Title level={2}>Home</Title>
-    </div>
+    <>
+      <HomeHeader />
+      <div style={{ padding: 24 }}>
+        <HomeHero />
+        <FreePicksSection />
+      </div>
+    </>
   );
 }

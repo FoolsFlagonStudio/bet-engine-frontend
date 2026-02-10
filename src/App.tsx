@@ -5,51 +5,46 @@ import Dashboard from "./pages/Dashboard";
 import Analytics from "./pages/Analytics";
 import Billing from "./pages/Billing";
 import AppLayout from "./components/AppLayout";
+import ResetPassword from "./pages/ResetPassword";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <AppLayout>
-              <Home />
-            </AppLayout>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <AppLayout>
-              <Login />
-            </AppLayout>
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/dashboard"
           element={
-            <AppLayout>
-              <Dashboard />
-            </AppLayout>
+            <ProtectedRoute>
+              <AppLayout>
+                <Dashboard />
+              </AppLayout>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/analytics"
           element={
-            <AppLayout>
-              <Analytics />
-            </AppLayout>
+            <ProtectedRoute>
+              <AppLayout>
+                <Analytics />
+              </AppLayout>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/billing"
           element={
-            <AppLayout>
-              <Billing />
-            </AppLayout>
+            <ProtectedRoute>
+              <AppLayout>
+                <Billing />
+              </AppLayout>
+            </ProtectedRoute>
           }
         />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>

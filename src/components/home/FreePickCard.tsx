@@ -16,7 +16,28 @@ export type FreePick = {
   matchup: string | null;
   model_prob: string | null;
   edge: string | null;
+  result: string | null;
 };
+
+function renderResultTag(result: string | null) {
+  if (!result) return null;
+
+  const map: Record<string, { label: string; color: string }> = {
+    win: { label: "WIN", color: "green" },
+    loss: { label: "LOSS", color: "red" },
+    void: { label: "VOID", color: "default" },
+  };
+
+  const config = map[result];
+
+  if (!config) return null;
+
+  return (
+    <Tag color={config.color} style={{ marginLeft: 8 }}>
+      {config.label}
+    </Tag>
+  );
+}
 
 export function FreePicksCard({
   picks,
@@ -35,6 +56,8 @@ export function FreePicksCard({
       })
     : "Today";
 
+
+
   return (
     <Card
       style={{ maxWidth: 520 }}
@@ -48,7 +71,10 @@ export function FreePicksCard({
             renderItem={(pick) => (
               <List.Item>
                 <Space orientation="vertical">
-                  <Text strong>{pick.display_text}</Text>
+                  <Text strong>
+                    {pick.display_text} {renderResultTag(pick.result)}
+                  </Text>
+
                   {pick.model_prob && pick.edge && (
                     <Text type="secondary">
                       {(Number(pick.model_prob) * 100).toFixed(1)}% model prob ·{" "}
@@ -70,7 +96,9 @@ export function FreePicksCard({
         dataSource={props}
         renderItem={(pick) => (
           <List.Item>
-            <Text>{pick.display_text}</Text>
+            <Text>
+              {pick.display_text} {renderResultTag(pick.result)}
+            </Text>
           </List.Item>
         )}
       />
