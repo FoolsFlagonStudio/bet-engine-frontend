@@ -1,5 +1,3 @@
-// src/lib/routes.ts
-
 export const API_ROUTES = {
   // --------------------
   // Bets
@@ -24,4 +22,7 @@ export const API_ROUTES = {
   // --------------------
   playerProfile: (playerId: number) =>
     `/api/public/players/${playerId}/profile`,
+
+  playersSearch: `/api/public/players/search`,
+  players: () => `/api/public/players`,
 };

@@ -2,6 +2,7 @@ import { Tabs, Typography } from "antd";
 import AnalyticsOverview from "../components/analytics/AnalyticsOverview";
 import HistoricalOverview from "../components/analytics/HistoricalOverview";
 import MoneylinesOverview from "../components/analytics/MoneylinesOverview";
+import PlayerOverview from "../components/analytics/PlayerOverview";
 const { Title } = Typography;
 
 export default function Analytics() {
@@ -29,7 +30,7 @@ export default function Analytics() {
           {
             key: "players",
             label: "Players",
-            children: <div>Coming later</div>,
+            children: <PlayerOverview />,
           },
         ]}
       />
