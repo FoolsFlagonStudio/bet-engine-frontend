@@ -28,7 +28,7 @@ export function FreePicksCard({
   const moneylines = picks.filter((p) => p.pick_type === "moneyline");
   const props = picks.filter((p) => p.pick_type === "straight");
   const formattedDate = date
-    ? new Date(date).toLocaleDateString(undefined, {
+    ? new Date(`${date}T12:00:00`).toLocaleDateString(undefined, {
         month: "short",
         day: "numeric",
         year: "numeric",
@@ -47,7 +47,7 @@ export function FreePicksCard({
             dataSource={moneylines}
             renderItem={(pick) => (
               <List.Item>
-                <Space direction="vertical">
+                <Space orientation="vertical">
                   <Text strong>{pick.display_text}</Text>
                   {pick.model_prob && pick.edge && (
                     <Text type="secondary">
