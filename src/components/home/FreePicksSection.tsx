@@ -5,7 +5,7 @@ import { apiFetch } from "../../lib/api";
 import { FreePicksCard } from "./FreePickCard";
 import type { FreePicksResponse } from "./FreePickCard";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 export default function FreePicksSection() {
   const todayQuery = useQuery<FreePicksResponse>({

@@ -1,4 +1,9 @@
 import { Card, Typography, Divider, List, Tag, Space } from "antd";
+import {
+  BarChartOutlined,
+  TrophyOutlined,
+  LineChartOutlined,
+} from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
@@ -23,13 +28,12 @@ function renderResultTag(result: string | null) {
   if (!result) return null;
 
   const map: Record<string, { label: string; color: string }> = {
-    win: { label: "WIN", color: "green" },
-    loss: { label: "LOSS", color: "red" },
+    win: { label: "WIN", color: "success" },
+    loss: { label: "LOSS", color: "error" },
     void: { label: "VOID", color: "default" },
   };
 
   const config = map[result];
-
   if (!config) return null;
 
   return (
@@ -48,6 +52,7 @@ export function FreePicksCard({
 }) {
   const moneylines = picks.filter((p) => p.pick_type === "moneyline");
   const props = picks.filter((p) => p.pick_type === "straight");
+
   const formattedDate = date
     ? new Date(`${date}T12:00:00`).toLocaleDateString(undefined, {
         month: "short",
@@ -56,23 +61,35 @@ export function FreePicksCard({
       })
     : "Today";
 
-
-
   return (
     <Card
       style={{ maxWidth: 520 }}
-      title={<Title level={4}>📊 Free Picks — {formattedDate}</Title>}
+      title={
+        <Space>
+          <BarChartOutlined />
+          <Title level={4} style={{ margin: 0 }}>
+            Free Picks — {formattedDate}
+          </Title>
+        </Space>
+      }
     >
       {moneylines.length > 0 && (
         <>
-          <Title level={5}>🏀 Moneyline</Title>
+          <Space style={{ marginBottom: 12 }}>
+            <TrophyOutlined />
+            <Title level={5} style={{ margin: 0 }}>
+              Moneyline
+            </Title>
+          </Space>
+
           <List
             dataSource={moneylines}
             renderItem={(pick) => (
               <List.Item>
-                <Space orientation="vertical">
+                <Space direction="vertical">
                   <Text strong>
-                    {pick.display_text} {renderResultTag(pick.result)}
+                    {pick.display_text}
+                    {renderResultTag(pick.result)}
                   </Text>
 
                   {pick.model_prob && pick.edge && (
@@ -91,13 +108,20 @@ export function FreePicksCard({
         </>
       )}
 
-      <Title level={5}>📈 Player Props</Title>
+      <Space style={{ marginBottom: 12 }}>
+        <LineChartOutlined />
+        <Title level={5} style={{ margin: 0 }}>
+          Player Props
+        </Title>
+      </Space>
+
       <List
         dataSource={props}
         renderItem={(pick) => (
           <List.Item>
             <Text>
-              {pick.display_text} {renderResultTag(pick.result)}
+              {pick.display_text}
+              {renderResultTag(pick.result)}
             </Text>
           </List.Item>
         )}

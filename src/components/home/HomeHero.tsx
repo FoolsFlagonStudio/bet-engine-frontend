@@ -1,7 +1,7 @@
-import { Typography, Button } from "antd";
+import { Typography, Button, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 export default function HomeHero() {
   const navigate = useNavigate();
@@ -10,27 +10,34 @@ export default function HomeHero() {
     <div
       style={{
         maxWidth: 900,
-        margin: "48px auto",
+        margin: "64px auto",
         padding: "0 24px",
         textAlign: "center",
       }}
     >
-      <Title level={2}>Model-Driven NBA Betting Analytics</Title>
+      <Space direction="vertical" size="large">
+        <Title level={2}>Model-Driven NBA Betting Analytics</Title>
 
-      <Paragraph>
-        This platform analyzes recent player performance, historical hit rates,
-        and market context to surface high-confidence betting opportunities. The
-        focus is on transparency, sample size, and trust — not volume.
-      </Paragraph>
+        <Paragraph>
+          We use recent performance data, historical hit rates, and market
+          context to surface structured, high-confidence NBA betting
+          opportunities — built around transparency, sample size, and trust.
+        </Paragraph>
 
-      <Paragraph>
-        Free picks are published daily. Full analytics access is currently
-        limited while the platform is in active development.
-      </Paragraph>
+        <Paragraph>
+          Each day, players are filtered by minutes consistency and ranked
+          across alt prop ladders for points, rebounds, assists, and threes.
+          Every pick is backed by visible performance data — not hype.
+        </Paragraph>
 
-      <Button type="primary" size="large" onClick={() => navigate("/login")}>
-        Login to View Picks / Analytics
-      </Button>
+        <Text type="secondary">
+          Free picks are published daily (typically ~11AM EST).
+        </Text>
+
+        <Button type="primary" size="large" onClick={() => navigate("/login")}>
+          View Today’s Picks
+        </Button>
+      </Space>
     </div>
   );
 }
