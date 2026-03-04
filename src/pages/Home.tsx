@@ -4,6 +4,7 @@ import FreePicksSection from "../components/home/FreePicksSection";
 import HowItWorksSection from "../components/home/HowItWorksSection";
 import TransparencySection from "../components/home/TransparencySection";
 import ComingSoonSection from "../components/home/ComingSoonSection";
+import Footer from "../components/home/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <HowItWorksSection />
       <TransparencySection />
       <ComingSoonSection />
+      <Footer />
     </>
   );
 }

@@ -5,8 +5,8 @@ const { Title, Paragraph, Text } = Typography;
 
 export default function TransparencySection() {
   return (
-    <div style={{ background: "#fafafa", padding: "64px 24px" }}>
-      <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
+    <div className="section-elevated">
+      <div className="container-narrow">
         <Title level={2}>Transparency Over Volume</Title>
 
         <Paragraph>
@@ -14,7 +14,7 @@ export default function TransparencySection() {
           high-volume daily picks.
         </Paragraph>
 
-        <Card style={{ marginTop: 32 }}>
+        <Card className="mt-32">
           <Space direction="vertical" size="middle">
             <Space>
               <CheckCircleOutlined />

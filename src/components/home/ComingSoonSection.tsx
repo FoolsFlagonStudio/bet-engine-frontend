@@ -4,11 +4,9 @@ const { Title, Paragraph } = Typography;
 
 export default function ComingSoonSection() {
   return (
-    <div style={{ padding: "64px 24px" }}>
-      <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-        <Title level={2} style={{ textAlign: "center", marginBottom: 48 }}>
-          Coming Soon
-        </Title>
+    <div className="section">
+      <div className="container">
+        <Title className="center mb-48">Coming Soon</Title>
 
         <Row gutter={[24, 24]}>
           <Col xs={24} md={12}>

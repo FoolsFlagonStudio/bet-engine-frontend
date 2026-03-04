@@ -21,17 +21,11 @@ export default function FreePicksSection() {
   if (todayQuery.isLoading || yesterdayQuery.isLoading) return null;
 
   return (
-    <div
-      style={{
-        background: "#fafafa",
-        padding: "48px 24px",
-        marginTop: 64,
-      }}
-    >
+    <div className="section-elevated">
       <Space orientation="vertical" size="large" style={{ width: "100%" }}>
         <Row gutter={[16, 16]} align="top">
           <Col xs={24} md={12}>
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <Title level={3}>Yesterday’s Results</Title>
               <div
                 style={{
@@ -49,15 +43,9 @@ export default function FreePicksSection() {
           </Col>
 
           <Col xs={24} md={12}>
-            <div style={{ textAlign: "center" }}>
+            <div className="center">
               <Title level={3}>Today’s Free Picks</Title>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: 24,
-                }}
-              >
+              <div className="flex-center mt-24">
                 <FreePicksCard
                   picks={todayQuery.data?.picks ?? []}
                   date={todayQuery.data?.date}

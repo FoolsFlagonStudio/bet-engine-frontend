@@ -63,7 +63,7 @@ export function FreePicksCard({
 
   return (
     <Card
-      style={{ maxWidth: 520 }}
+      className="card-wrapper"
       title={
         <Space>
           <BarChartOutlined />
