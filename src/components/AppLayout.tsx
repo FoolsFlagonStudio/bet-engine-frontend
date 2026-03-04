@@ -28,7 +28,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         }}
       >
         <div style={{ color: "#fff", padding: 16, fontWeight: 600 }}>
-          Bet Engine
+          EdgeForge
         </div>
 
         <Menu

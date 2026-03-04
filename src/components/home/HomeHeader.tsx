@@ -18,7 +18,7 @@ export default function HomeHeader() {
       }}
     >
       <Title level={4} style={{ margin: 0 }}>
-        Placeholder App Name
+        EdgeForge
       </Title>
 
       <Space>

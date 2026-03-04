@@ -1,6 +1,7 @@
-import { Typography, Card } from "antd";
+import { Typography, Card, Space } from "antd";
+import { CheckCircleOutlined } from "@ant-design/icons";
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 export default function TransparencySection() {
   return (
@@ -14,16 +15,32 @@ export default function TransparencySection() {
         </Paragraph>
 
         <Card style={{ marginTop: 32 }}>
-          <Paragraph>
-            Every generated bet is logged, graded, and added to historical
-            performance dashboards.
-          </Paragraph>
+          <Space direction="vertical" size="middle">
+            <Space>
+              <CheckCircleOutlined />
+              <Text>Historical straight prop performance</Text>
+            </Space>
 
-          <Paragraph>
-            ✔ Historical straight prop performance ✔ Moneyline performance
-            tracking ✔ Player-specific betting breakdowns ✔ Market-by-market win
-            rates ✔ Stat combo tracking (coming soon)
-          </Paragraph>
+            <Space>
+              <CheckCircleOutlined />
+              <Text>Moneyline performance tracking</Text>
+            </Space>
+
+            <Space>
+              <CheckCircleOutlined />
+              <Text>Player-specific betting breakdowns</Text>
+            </Space>
+
+            <Space>
+              <CheckCircleOutlined />
+              <Text>Market-by-market win rates</Text>
+            </Space>
+
+            <Space>
+              <CheckCircleOutlined />
+              <Text>Stat combo tracking (coming soon)</Text>
+            </Space>
+          </Space>
         </Card>
       </div>
     </div>
