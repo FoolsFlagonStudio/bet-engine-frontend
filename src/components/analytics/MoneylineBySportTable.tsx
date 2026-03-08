@@ -9,6 +9,7 @@ export default function MoneylineBySportTable({
 }) {
   return (
     <Table
+      className="dashboard-table"
       rowKey="sport"
       dataSource={data}
       pagination={false}

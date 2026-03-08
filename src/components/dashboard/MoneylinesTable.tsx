@@ -5,7 +5,7 @@ type Props = {
 };
 
 export default function MoneylinesTable({ data }: Props) {
-    console.log(data)
+  console.log(data);
   const columns = [
     {
       title: "Matchup",
@@ -43,25 +43,11 @@ export default function MoneylinesTable({ data }: Props) {
         return <Tag color={color}>{pct.toFixed(1)}%</Tag>;
       },
     },
-    // {
-    //   title: "Status",
-    //   dataIndex: "status",
-    //   filters: [
-    //     { text: "Pending", value: "pending" },
-    //     { text: "Win", value: "win" },
-    //     { text: "Loss", value: "loss" },
-    //   ],
-    //   onFilter: (value: any, r: any) => r.status === value,
-    //   render: (s: string) => (
-    //     <Tag color={s === "pending" ? "blue" : s === "win" ? "green" : "red"}>
-    //       {s}
-    //     </Tag>
-    //   ),
-    // },
   ];
 
   return (
     <Table
+      className="dashboard-table"
       rowKey="bet_id"
       columns={columns}
       dataSource={data}

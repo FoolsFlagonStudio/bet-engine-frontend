@@ -25,7 +25,7 @@ export default function Dashboard() {
   if (isLoading) return <div>Loading…</div>;
 
   return (
-    <div style={{ padding: 24 }}>
+    <div style={{ padding: 24 }} className="dashboard">
       <Title level={2}>Dashboard</Title>
 
       <DashboardHeader betType={betType} onChange={setBetType} />

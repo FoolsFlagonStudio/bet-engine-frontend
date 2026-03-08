@@ -39,7 +39,7 @@ export default function MoneylineCalibrationChart({
       {
         label: "Actual Win Rate",
         data: actual,
-        borderColor: "#1890ff",
+        borderColor: "#c05600",
         tension: 0.25,
       },
       {

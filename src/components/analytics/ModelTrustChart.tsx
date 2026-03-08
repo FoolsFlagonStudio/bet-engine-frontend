@@ -46,8 +46,8 @@ export default function ModelTrustChart({ data }: { data: ModelTrustRow[] }) {
       {
         label: "Overall Model Trust",
         data: sorted.map((r) => r.trust_all),
-        borderColor: "#1890ff",
-        backgroundColor: "rgba(24,144,255,0.15)",
+        borderColor: "#c05600",
+        backgroundColor: "rgba(192, 86, 0, 0.15)",
         tension: 0.35,
       },
       {

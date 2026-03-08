@@ -21,7 +21,12 @@ export default function StraightsTable({ data, onPlayerClick }: Props) {
         (a.player ?? "").localeCompare(b.player ?? ""),
       render: (_: any, r: any) =>
         r.player ? (
-          <a onClick={() => onPlayerClick(r.player_id)}>{r.player}</a>
+          <span
+            className="player-link"
+            onClick={() => onPlayerClick(r.player_id)}
+          >
+            {r.player}
+          </span>
         ) : (
           "—"
         ),
@@ -56,7 +61,6 @@ export default function StraightsTable({ data, onPlayerClick }: Props) {
       sorter: (a: any, b: any) =>
         (a.player_trust ?? -1) - (b.player_trust ?? -1),
       render: (_: any, r: any) => {
-
         if (r.player_trust == null) {
           return <Tag color="default">No data</Tag>;
         }
@@ -87,9 +91,7 @@ export default function StraightsTable({ data, onPlayerClick }: Props) {
         { text: "Speculative", value: "speculative" },
       ],
       onFilter: (value: any, record: any) => record.risk === value,
-      render: (r: string) => (
-        <Tag color={r === "core" ? "green" : "gold"}>{r}</Tag>
-      ),
+      render: (r: string) => <Tag className={`risk-tag risk-${r}`}>{r}</Tag>,
     },
     {
       title: "Flags",
@@ -102,6 +104,7 @@ export default function StraightsTable({ data, onPlayerClick }: Props) {
 
   return (
     <Table
+      className="dashboard-table"
       rowKey="bet_id"
       columns={columns}
       dataSource={data}

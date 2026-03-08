@@ -53,6 +53,7 @@ export default function MarketPerformanceTable({
 
   return (
     <Table
+      className="dashboard-table"
       rowKey="market"
       columns={columns}
       dataSource={markets}

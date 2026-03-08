@@ -12,6 +12,7 @@ type Row = {
 export default function ConfidencePerformanceTable({ data }: { data: Row[] }) {
   return (
     <Table
+      className="dashboard-table"
       rowKey="confidence"
       dataSource={data}
       pagination={false}

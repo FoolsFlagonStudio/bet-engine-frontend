@@ -18,6 +18,7 @@ export default function MarketSummaryTable({ markets }: Props) {
     <Table
       dataSource={data}
       pagination={false}
+      tableLayout="fixed"
       expandable={{
         expandedRowRender: (row) => <LineBreakdownTable lines={row.lines} />,
       }}
@@ -25,16 +26,23 @@ export default function MarketSummaryTable({ markets }: Props) {
         {
           title: "Market",
           dataIndex: "market",
+          width: "50%",
           render: (m) => m.toUpperCase(),
         },
         {
           title: "Record",
+          width: "20%",
           render: (_, r) => `${r.wins} / ${r.total}`,
         },
         {
           title: "Win Rate",
+          width: "30%",
           render: (_, r) => (
-            <Progress percent={Number(r.win_rate) * 100} size="small" />
+            <Progress
+              className="progress-bar"
+              percent={Number((r.win_rate * 100).toFixed(1))}
+              size="small"
+            />
           ),
         },
       ]}

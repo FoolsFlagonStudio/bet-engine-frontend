@@ -36,6 +36,7 @@ export default function MoneylineEdgeBucketsTable({
 
   return (
     <Table
+      className="dashboard-table"
       rowKey={(r) => r.edge_bucket}
       dataSource={data}
       columns={columns}

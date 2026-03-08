@@ -41,6 +41,7 @@ export default function PlayerTable({ search, onSelectPlayer }: Props) {
   return (
     <Table
       loading={isLoading}
+      className="dashboard-table"
       rowKey="player_id"
       dataSource={data?.data ?? []}
       onRow={(row) => ({
@@ -50,6 +51,7 @@ export default function PlayerTable({ search, onSelectPlayer }: Props) {
         {
           title: "Player",
           dataIndex: "player_name",
+          className: "clickable"
         },
         {
           title: "Win Rate",

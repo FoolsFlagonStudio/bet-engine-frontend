@@ -15,18 +15,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        width={220}
-        style={{
-          height: "100vh",
-          position: "sticky",
-          top: 0,
-          left: 0,
-          overflow: "auto",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <Sider className="sider">
         <div style={{ color: "#fff", padding: 16, fontWeight: 600 }}>
           EdgeForge
         </div>

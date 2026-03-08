@@ -92,6 +92,7 @@ export default function MarketConfidenceTable({
   return (
     <>
       <Table
+            className="dashboard-table"
         columns={columns}
         dataSource={groupByMarket(data)}
         pagination={false}
