@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# EdgeForge Bet Engine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Flask-based analytics API powering the EdgeForge sports betting platform.
 
-Currently, two official plugins are available:
+Live API: https://api.edgeforge.co
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The bet engine processes NBA player performance data, generates prop models, and exposes analytics endpoints used by the EdgeForge frontend.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Player performance modeling
+- Alt line confidence scoring
+- Market hit rate tracking
+- Moneyline projection modeling
+- Historical result tracking
+- Daily pick generation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Python
+- Flask
+- SQLAlchemy
+- PostgreSQL
+- Pandas
+- NBA API
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Infrastructure:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Render (API hosting)
+- Supabase PostgreSQL
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Key API Endpoints
+
+### Free Picks
+`GET /api/free-picks?date=today`
+
+Returns curated daily picks from the model.
+
+---
+
+### Historical Analytics
+`GET /api/analytics`
+
+
+Returns player model insights and historical stats.
+
+---
+
+## Architecture
+NBA API\
+↓\
+Data ingestion pipeline\
+↓\
+Model evaluation\
+↓\
+Bet generation\
+↓\
+PostgreSQL\
+↓\
+Flask API
+
+
+---
+
+## Data Pipeline
+
+The engine processes:
+
+- Recent player performance
+- Historical hit rates
+- Market line comparisons
+- Team performance metrics
+
+to generate structured betting opportunities.
+
+---
+
+## Future Work
+
+- Multi-sport support
+- Redis caching
+- Expanded analytics endpoints
+
+---
+
+## Author
+
+Evan Roberts
