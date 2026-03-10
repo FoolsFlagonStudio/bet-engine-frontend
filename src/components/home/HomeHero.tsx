@@ -9,7 +9,9 @@ export default function HomeHero() {
   return (
     <div className="hero">
       <Space direction="vertical" size="large">
-        <Title level={2}>Model-Driven Sports Betting Analytics</Title>
+        <Title level={2}>
+          Model-Driven Sports Analytics & Betting Insights
+        </Title>
 
         <Paragraph>
           We use recent performance data, historical hit rates, and market

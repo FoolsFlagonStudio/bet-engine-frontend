@@ -47,6 +47,14 @@ body {
   box-sizing: border-box;
 }
 
+.footer-link {
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
 .sider {
   background-color: var(--bg-nav);
   height: 100vh;

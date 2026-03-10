@@ -1,21 +1,21 @@
-import HomeHeader from "../components/home/HomeHeader";
 import HomeHero from "../components/home/HomeHero";
 import FreePicksSection from "../components/home/FreePicksSection";
 import HowItWorksSection from "../components/home/HowItWorksSection";
 import TransparencySection from "../components/home/TransparencySection";
 import ComingSoonSection from "../components/home/ComingSoonSection";
-import Footer from "../components/home/Footer";
+
 
 export default function Home() {
+  console.log("we're on home page");
   return (
     <>
-      <HomeHeader />
+
       <HomeHero />
       <FreePicksSection />
       <HowItWorksSection />
       <TransparencySection />
       <ComingSoonSection />
-      <Footer />
+
     </>
   );
 }

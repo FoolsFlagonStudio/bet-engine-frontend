@@ -7,12 +7,56 @@ import Billing from "./pages/Billing";
 import AppLayout from "./components/AppLayout";
 import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Pricing from "./pages/Pricing";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Disclaimer from "./pages/Disclaimer";
+import PublicLayout from "./components/layout/PublicLayout";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <PublicLayout>
+              <Home />
+            </PublicLayout>
+          }
+        />{" "}
+        <Route
+          path="/pricing"
+          element={
+            <PublicLayout>
+              <Pricing />
+            </PublicLayout>
+          }
+        />
+        <Route
+          path="/privacy"
+          element={
+            <PublicLayout>
+              <Privacy />
+            </PublicLayout>
+          }
+        />
+        <Route
+          path="/terms"
+          element={
+            <PublicLayout>
+              <Terms />
+            </PublicLayout>
+          }
+        />
+        <Route
+          path="/disclaimer"
+          element={
+            <PublicLayout>
+              <Disclaimer />
+            </PublicLayout>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route
           path="/dashboard"

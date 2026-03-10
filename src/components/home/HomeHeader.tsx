@@ -1,5 +1,5 @@
 import { Button, Space, Typography } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const { Title } = Typography;
 
@@ -8,13 +8,22 @@ export default function HomeHeader() {
 
   return (
     <div className="home-header">
-      <Title level={4} style={{ margin: 0 }}>
+      <Title
+        level={4}
+        style={{ margin: 0, cursor: "pointer" }}
+        onClick={() => navigate("/")}
+      >
         EdgeForge
       </Title>
 
       <Space>
+        <Link to="/pricing">
+          <Button type="text"
+          className="ant-typography">Pricing</Button>
+        </Link>
+
         <Button type="primary" onClick={() => navigate("/login")}>
-          Login
+          Admin Login
         </Button>
       </Space>
     </div>
