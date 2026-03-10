@@ -13,6 +13,11 @@ export default function HomeHero() {
           Model-Driven Sports Analytics & Betting Insights
         </Title>
 
+        <Title level={4}>
+          Data-driven sports analytics built on transparent historical tracking
+          and repeatable model evaluation.
+        </Title>
+
         <Paragraph>
           We use recent performance data, historical hit rates, and market
           context to surface structured, high-confidence betting opportunities —
