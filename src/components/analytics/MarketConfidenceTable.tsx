@@ -1,4 +1,5 @@
 import { Table, Tag, Typography } from "antd";
+import { formatMarketName } from "../../lib/markets";
 
 const { Text } = Typography;
 
@@ -26,7 +27,7 @@ function groupByMarket(rows: MarketConfidenceRow[]) {
 
   return Object.entries(grouped).map(([market, rows]) => ({
     key: market,
-    market: market.toUpperCase(),
+    market: formatMarketName(market),
     children: rows
       .sort((a, b) => b.confidence - a.confidence)
       .map((r) => ({
@@ -48,8 +49,7 @@ export default function MarketConfidenceTable({
       title: "Market",
       dataIndex: "market",
       key: "market",
-      fixed: "left" as const,
-      width: 140,
+      width: 200,
       render: (value: string, record: any) =>
         record.children ? <strong>{value}</strong> : null,
     },

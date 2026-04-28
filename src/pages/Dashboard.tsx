@@ -17,9 +17,12 @@ export default function Dashboard() {
   );
   const [selectedPlayerId, setSelectedPlayerId] = useState<number | null>(null);
 
+  const today = new Date().toISOString().split("T")[0];
+
   const { data: todaysBets = [], isLoading } = useQuery<any[]>({
-    queryKey: ["bets", "today", betType],
+    queryKey: ["bets", today, betType],
     queryFn: () => apiFetch(`${API_ROUTES.todaysBets}?type=${betType}`),
+    staleTime: 60 * 60 * 1000,
   });
 
   if (isLoading) return <div>Loading…</div>;

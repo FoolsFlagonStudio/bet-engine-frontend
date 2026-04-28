@@ -1,5 +1,8 @@
-import { Table, Progress } from "antd";
+import { Table, Progress, Typography } from "antd";
 import LineBreakdownTable from "./LineBreakdownTable";
+import { formatMarketName } from "../../lib/markets";
+
+const { Text } = Typography;
 
 type Props = {
   markets: Record<string, any>;
@@ -14,11 +17,19 @@ export default function MarketSummaryTable({ markets }: Props) {
     }))
     .sort((a, b) => Number(b.win_rate) - Number(a.win_rate));
 
+  if (data.length === 0) {
+    return (
+      <Text type="secondary">No graded bets yet for this player.</Text>
+    );
+  }
+
   return (
     <Table
+      className="dashboard-table"
       dataSource={data}
       pagination={false}
       tableLayout="fixed"
+      style={{ width: "100%" }}
       expandable={{
         expandedRowRender: (row) => <LineBreakdownTable lines={row.lines} />,
       }}
@@ -26,17 +37,16 @@ export default function MarketSummaryTable({ markets }: Props) {
         {
           title: "Market",
           dataIndex: "market",
-          width: "50%",
-          render: (m) => m.toUpperCase(),
+          render: (m: string, row: any) => row.label ?? formatMarketName(m),
         },
         {
           title: "Record",
-          width: "20%",
+          width: 100,
           render: (_, r) => `${r.wins} / ${r.total}`,
         },
         {
           title: "Win Rate",
-          width: "30%",
+          width: 160,
           render: (_, r) => (
             <Progress
               className="progress-bar"

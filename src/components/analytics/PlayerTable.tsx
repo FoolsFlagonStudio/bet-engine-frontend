@@ -63,6 +63,7 @@ export default function PlayerTable({ search, onSelectPlayer }: Props) {
           dataIndex: "total_straights",
         },
       ]}
+      scroll={{ x: "max-content" }}
       pagination={{
         current: page,
         pageSize: data?.limit ?? 25,

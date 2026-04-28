@@ -1,4 +1,4 @@
-import { Typography, Spin, Alert, Space, Card } from "antd";
+import { Typography, Spin, Alert, Space, Card, Table, Progress } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "../../lib/api";
 import { API_ROUTES } from "../../lib/routes";
@@ -7,6 +7,13 @@ import ConfidenceWinRateChart from "../analytics/ConfidenceWinRateChart";
 import MarketPerformanceTable from "./MarketPerformanceTable";
 import ModelTrustChart from "./ModelTrustChart";
 const { Title } = Typography;
+
+type BySportRow = {
+  sport: string;
+  total: number;
+  wins: number;
+  win_rate: string;
+};
 
 type HistoricalAnalytics = {
   overall: {
@@ -27,6 +34,8 @@ type HistoricalAnalytics = {
   }[];
 
   confidence_weighted: string | null;
+  confidence_weighted_base: string | null;
+  confidence_weighted_combo: string | null;
 
   markets: {
     market: string;
@@ -45,6 +54,8 @@ type HistoricalAnalytics = {
     win_rate: string;
     low_sample: boolean;
   }[];
+
+  by_sport: BySportRow[];
 };
 
 type ModelTrustRow = {
@@ -58,6 +69,26 @@ type ModelTrustRow = {
   };
 };
 
+const sportColumns = [
+  { title: "Sport", dataIndex: "sport", key: "sport" },
+  {
+    title: "Record",
+    key: "record",
+    render: (_: any, r: BySportRow) => `${r.wins} / ${r.total}`,
+  },
+  {
+    title: "Win Rate",
+    key: "win_rate",
+    render: (_: any, r: BySportRow) => (
+      <Progress
+        className="progress-bar"
+        percent={Number((Number(r.win_rate) * 100).toFixed(1))}
+        size="small"
+      />
+    ),
+  },
+];
+
 export default function AnalyticsOVerview() {
   const {
     data: historical,
@@ -66,6 +97,7 @@ export default function AnalyticsOVerview() {
   } = useQuery<HistoricalAnalytics>({
     queryKey: ["historical-analytics"],
     queryFn: () => apiFetch(API_ROUTES.historicalAnalytics),
+    staleTime: 15 * 60 * 1000,
   });
 
   const {
@@ -75,6 +107,7 @@ export default function AnalyticsOVerview() {
   } = useQuery<ModelTrustRow[]>({
     queryKey: ["model-trust"],
     queryFn: () => apiFetch(API_ROUTES.modelTrust),
+    staleTime: 15 * 60 * 1000,
   });
 
   if (historicalLoading || trustLoading) {
@@ -91,14 +124,17 @@ export default function AnalyticsOVerview() {
     );
   }
 
+  const confidenceWeighted =
+    historical?.confidence_weighted_base ?? historical?.confidence_weighted;
+
   return (
     <>
       <Title level={3}>Overview</Title>
 
-      <Space orientation="vertical" size="large" style={{ width: "100%" }}>
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
         <OverviewStats
           overall={historical?.overall}
-          confidenceWeighted={historical?.confidence_weighted}
+          confidenceWeighted={confidenceWeighted}
         />
 
         <Card
@@ -128,6 +164,19 @@ export default function AnalyticsOVerview() {
             only. Parlays and moneylines are excluded.
           </Typography.Text>
         </Card>
+
+        {(historical?.by_sport?.length ?? 0) > 0 && (
+          <Card title="Performance by Sport">
+            <Table
+              className="dashboard-table"
+              dataSource={historical!.by_sport}
+              columns={sportColumns}
+              rowKey="sport"
+              pagination={false}
+              size="small"
+            />
+          </Card>
+        )}
 
         <Card
           title={
