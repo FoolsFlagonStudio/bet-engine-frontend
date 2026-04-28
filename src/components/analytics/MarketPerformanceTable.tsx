@@ -1,4 +1,5 @@
 import { Table, Tag } from "antd";
+import { formatMarketName } from "../../lib/markets";
 
 type MarketRow = {
   market: string;
@@ -19,7 +20,7 @@ export default function MarketPerformanceTable({
       title: "Market",
       dataIndex: "market",
       key: "market",
-      render: (m: string) => <strong>{m.toUpperCase()}</strong>,
+      render: (m: string) => <strong>{formatMarketName(m)}</strong>,
     },
     {
       title: "Win Rate",

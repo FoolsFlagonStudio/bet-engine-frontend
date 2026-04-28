@@ -1,10 +1,11 @@
-import { Modal, Spin, Typography, Space } from "antd";
+import { Modal, Spin, Typography, Space, Grid } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import { apiFetch } from "../../lib/api";
 import { API_ROUTES } from "../../lib/routes";
 import type { PlayerProfileResponse } from "./../../types/players";
 import MarketSummaryTable from "./MarketSummaryTable";
 const { Title, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 type Props = {
   playerId: number | null;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export default function PlayerProfileModal({ playerId, onClose }: Props) {
+  const screens = useBreakpoint();
   const { data, isLoading } = useQuery<PlayerProfileResponse>({
     enabled: !!playerId,
     queryKey: ["player-profile", playerId],
@@ -23,7 +25,7 @@ return (
     open={!!playerId}
     onCancel={onClose}
     footer={null}
-    width={800}
+    width={screens.md ? 800 : "95vw"}
     wrapClassName="player-modal"
   >
     {isLoading || !data ? (

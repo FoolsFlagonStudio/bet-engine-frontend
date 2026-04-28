@@ -52,6 +52,7 @@ export default function MoneylinesTable({ data }: Props) {
       columns={columns}
       dataSource={data}
       pagination={false}
+      scroll={{ x: "max-content" }}
     />
   );
 }

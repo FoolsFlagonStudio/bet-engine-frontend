@@ -7,10 +7,13 @@ type Props = {
 
 export default function StraightsTable({ data, onPlayerClick }: Props) {
   const marketFilters = Array.from(new Set(data.map((d) => d.market))).map(
-    (m) => ({
-      text: m.toUpperCase(),
-      value: m,
-    }),
+    (m) => {
+      const row = data.find((d) => d.market === m);
+      return {
+        text: row?.market_label ?? (m as string).toUpperCase(),
+        value: m,
+      };
+    },
   );
 
   const columns = [
@@ -32,16 +35,28 @@ export default function StraightsTable({ data, onPlayerClick }: Props) {
         ),
     },
     {
+      title: "Sport",
+      dataIndex: "sport",
+      filters: [
+        { text: "NBA", value: "NBA" },
+        { text: "MLB", value: "MLB" },
+        { text: "NHL", value: "NHL" },
+      ],
+      onFilter: (value: any, record: any) => record.sport === value,
+      render: (s: string) => <Tag>{s}</Tag>,
+    },
+    {
       title: "Market",
       dataIndex: "market",
       filters: marketFilters,
       onFilter: (value: any, record: any) => record.market === value,
-      render: (m: string) => m.toUpperCase(),
+      render: (m: string, r: any) => r.market_label ?? m.toUpperCase(),
     },
     {
       title: "Line",
-      dataIndex: "line",
-      render: (v: number) => `${v}+`,
+      dataIndex: "display_line",
+      render: (v: string | null, r: any) =>
+        v ?? (r.line != null ? `${r.line}+` : "—"),
     },
     {
       title: "Confidence",
@@ -108,7 +123,13 @@ export default function StraightsTable({ data, onPlayerClick }: Props) {
       rowKey="bet_id"
       columns={columns}
       dataSource={data}
-      pagination={false}
+      pagination={{
+        defaultPageSize: 50,
+        pageSizeOptions: ["25", "50", "100"],
+        showSizeChanger: true,
+        showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
+      }}
+      scroll={{ x: "max-content" }}
     />
   );
 }

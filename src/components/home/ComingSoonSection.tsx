@@ -29,23 +29,6 @@ export default function ComingSoonSection() {
             </Card>
           </Col>
 
-          <Col xs={24} md={12}>
-            <Card>
-              <Title level={4}>MLB Support</Title>
-              <Paragraph>
-                Baseball modeling launching late March / early April.
-              </Paragraph>
-            </Card>
-          </Col>
-
-          <Col xs={24} md={12}>
-            <Card>
-              <Title level={4}>NHL & NFL</Title>
-              <Paragraph>
-                Multi-sport expansion planned for next season rollouts.
-              </Paragraph>
-            </Card>
-          </Col>
         </Row>
       </div>
     </div>

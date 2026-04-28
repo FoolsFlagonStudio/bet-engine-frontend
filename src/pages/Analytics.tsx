@@ -1,6 +1,7 @@
 import { Tabs, Typography } from "antd";
 import AnalyticsOverview from "../components/analytics/AnalyticsOverview";
 import HistoricalOverview from "../components/analytics/HistoricalOverview";
+import PropsOverview from "../components/analytics/PropsOverview";
 import MoneylinesOverview from "../components/analytics/MoneylinesOverview";
 import PlayerOverview from "../components/analytics/PlayerOverview";
 const { Title } = Typography;
@@ -11,6 +12,7 @@ export default function Analytics() {
       <Title level={2}>Analytics</Title>
       <Tabs
         defaultActiveKey="overview"
+        tabBarStyle={{ overflowX: "auto", overflowY: "hidden", whiteSpace: "nowrap" }}
         items={[
           {
             key: "overview",
@@ -21,6 +23,11 @@ export default function Analytics() {
             key: "historical",
             label: "Historical",
             children: <HistoricalOverview />,
+          },
+          {
+            key: "props",
+            label: "Props",
+            children: <PropsOverview />,
           },
           {
             key: "moneyline",

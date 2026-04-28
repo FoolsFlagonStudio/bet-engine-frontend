@@ -235,11 +235,13 @@ body {
 
 .section {
   padding: 64px 24px;
+  overflow-x: hidden;
 }
 
 .section-elevated {
   padding: 64px 24px;
   background: var(--bg-primary);
+  overflow-x: hidden;
 }
 
 .container {
@@ -975,4 +977,69 @@ body {
   display: flex;
   justify-content: center;
   padding: 60px 0;
+}
+
+/* ===== Mobile Responsive ===== */
+
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border-subtle);
+    height: 56px;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .section,
+  .section-elevated {
+    padding: 32px 16px;
+  }
+
+  .hero {
+    margin: 32px auto;
+    padding: 0 16px;
+  }
+
+  .card-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .home-header {
+    padding: 12px 16px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .app-content {
+    padding: 16px !important;
+  }
+
+  .container {
+    padding: 0;
+    width: 100%;
+  }
+
+  /* Ant Layout Header override for mobile nav */
+  .ant-layout-header {
+    height: 56px;
+    line-height: 56px;
+    padding: 0;
+    background: var(--bg-nav);
+  }
+}
+
+.ant-pagination-total-text {
+  color: var(--text-secondary);
 }

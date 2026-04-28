@@ -42,6 +42,7 @@ export default function MoneylinesOverview() {
   if (edgeQ.isLoading || calibQ.isLoading || sportQ.isLoading) return <Spin />;
 
   if (edgeQ.error || calibQ.error || sportQ.error) {
+    console.log(edgeQ, calibQ.error, sportQ.error)
     return (
       <Alert
         type="error"
