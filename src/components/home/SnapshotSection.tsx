@@ -23,7 +23,7 @@ export default function SnapshotSection() {
 
   if (error || !data) return null;
 
-  const streakColor = data.current_streak.result === "win" ? "#52c41a" : "#ff4d4f";
+  // const streakColor = data.current_streak.result === "win" ? "#52c41a" : "#ff4d4f";
   const sportKeys = Object.keys(data.today.props_by_sport);
 
   return (
