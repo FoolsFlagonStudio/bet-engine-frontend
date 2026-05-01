@@ -1,6 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import Subscribe from "./pages/Subscribe";
+import Upgrade from "./pages/Upgrade";
 import Dashboard from "./pages/Dashboard";
 import Analytics from "./pages/Analytics";
 import Billing from "./pages/Billing";
@@ -58,6 +62,10 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/subscribe" element={<Subscribe />} />
+        <Route path="/upgrade" element={<Upgrade />} />
         <Route
           path="/dashboard"
           element={

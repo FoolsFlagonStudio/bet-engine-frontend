@@ -49,6 +49,13 @@ export const API_ROUTES = {
   },
 
   // --------------------
+  // Auth / Billing
+  // --------------------
+  me: "/api/me",
+  billingCheckout: "/api/billing/checkout",
+  billingPortal: "/api/billing/portal",
+
+  // --------------------
   // Players
   // --------------------
   playerProfile: (playerId: number) =>
